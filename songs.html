@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <!-- Font for controls of audio -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="songs.css" />
+</head>
+<body>
+
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+
+  <canvas id="colorSampler" aria-hidden="true" style="display:none;"></canvas>
+
+  <div class="page">
+
+    <header class="page-header">
+      <p class="page-eyebrow">Have a listen hehehe</p>
+      <h1 class="page-title">
+        Songs that <em>remind me</em> of you
+      </h1>
+    </header>
+
+    <!-- Player -->
+    <section class="player" aria-label="Music player">
+
+      <!-- Album art -->
+      <div class="player-art-wrap">
+        <div class="player-art-glow" id="artGlow"></div>
+        <img
+          id="playerArt"
+          class="player-art"
+          src=""
+          alt="Album art"
+        />
+      </div>
+
+      <!-- Song info -->
+      <div class="player-info">
+        <p class="player-track" id="playerTrack">—</p>
+        <p class="player-artist" id="playerArtist">—</p>
+      </div>
+
+      <!-- Hidden audio element -->
+      <audio id="audio"></audio>
+
+      <!-- Progress -->
+      <div class="player-progress-wrap">
+        <span class="player-time" id="timeElapsed">0:00</span>
+        <input
+          type="range"
+          id="progress"
+          class="player-progress"
+          value="0"
+          min="0"
+          step="0.01"
+          aria-label="Seek"
+        />
+        <span class="player-time" id="timeDuration">0:00</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="player-controls" role="group" aria-label="Playback controls">
+        <button class="ctrl-btn ctrl-prev" id="prevBtn" aria-label="Previous song">
+          <i class="fa-solid fa-backward-step"></i>
+        </button>
+        <button class="ctrl-btn ctrl-play" id="playBtn" aria-label="Play">
+          <i class="fa-solid fa-play" id="playIcon"></i>
+        </button>
+        <button class="ctrl-btn ctrl-next" id="nextBtn" aria-label="Next song">
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+      </div>
+      <!-- Controls volume -->
+<div class="player-volume">
+  <i class="fa-solid fa-volume-low" id="volIcon"></i>
+  <input
+    type="range"
+    id="volume"
+    class="player-progress"
+    min="0"
+    max="1"
+    step="0.01"
+    value="0.5"
+    aria-label="Volume"
+  />
+  <i class="fa-solid fa-volume-high"></i>
+</div>
+
+    </section>
+
+    <!-- track list........... -->
+    <section class="tracklist" aria-label="Track list">
+      <p class="tracklist-label">— the playlist —</p>
+      <ol class="tracklist-items" id="tracklistItems">
+      </ol>
+    </section>
+
+  </div><!-- /page -->
+
+  <footer>
+  <a style="text-decoration: none;" href="Home.html">
+    <p class="hint">Click here to go back</p>
+  </a>
+  </footer>
+
+  <script src="songs.js"></script>
+
+</body>
+</html>

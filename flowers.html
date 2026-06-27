@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Gift For You — Birthday 2026</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="flowers.css" />
+</head>
+<body>
+
+  <!-- Petal + sparkles -->
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <div class="page">
+
+    <header class="page-header">
+      <p class="page-eyebrow">Woah what is that</p>
+      <h1 class="page-title">
+        A <em>note</em> for you
+      </h1>
+    </header>
+
+    <!-- enveloppe image to click -->
+    <div class="seal-wrap" id="sealWrap" aria-live="polite">
+      <div>
+        <div
+          id="seal"
+          role="button"
+          tabindex="0"
+          aria-label="Click to open your letter"
+          class="seal"
+        >
+          <img
+            src="Images/envelope.png"
+            alt="A bouquet of flowers — click to open your letter"
+            id="sealImg"
+          />
+        </div>
+        <p class="seal-hint" id="sealHint">Tap to open</p>
+      </div>
+    </div>
+
+    <!-- note card -->
+    <div class="letter-wrap" id="letterWrap" aria-hidden="true">
+      <div class="letter-card">
+
+        <!-- corner decorations -->
+        <svg class="floral-corner tl" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 110 Q10 10 110 10" stroke="#8FAF7E" stroke-width="1.5" fill="none"/>
+          <circle cx="28" cy="42" r="8" fill="#E8A0B0" opacity=".7"/>
+          <circle cx="42" cy="26" r="6" fill="#D4A44C" opacity=".6"/>
+          <circle cx="18" cy="62" r="5" fill="#E8A0B0" opacity=".5"/>
+          <path d="M22 48 Q26 36 36 34" stroke="#8FAF7E" stroke-width="1" fill="none"/>
+          <path d="M14 70 Q16 58 24 54" stroke="#8FAF7E" stroke-width="1" fill="none"/>
+          <circle cx="55" cy="18" r="4" fill="#E8A0B0" opacity=".5"/>
+          <path d="M48 22 Q52 14 58 14" stroke="#8FAF7E" stroke-width="1" fill="none"/>
+          <ellipse cx="32" cy="52" rx="5" ry="9" fill="#8FAF7E" opacity=".4" transform="rotate(-40 32 52)"/>
+          <ellipse cx="46" cy="34" rx="4" ry="7" fill="#8FAF7E" opacity=".35" transform="rotate(-65 46 34)"/>
+          <ellipse cx="20" cy="74" rx="3.5" ry="6" fill="#8FAF7E" opacity=".35" transform="rotate(-20 20 74)"/>
+        </svg>
+
+        <svg class="floral-corner tr" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 110 Q10 10 110 10" stroke="#8FAF7E" stroke-width="1.5" fill="none"/>
+          <circle cx="28" cy="42" r="8" fill="#E8A0B0" opacity=".7"/>
+          <circle cx="42" cy="26" r="6" fill="#D4A44C" opacity=".6"/>
+          <circle cx="18" cy="62" r="5" fill="#E8A0B0" opacity=".5"/>
+          <path d="M22 48 Q26 36 36 34" stroke="#8FAF7E" stroke-width="1" fill="none"/>
+          <circle cx="55" cy="18" r="4" fill="#E8A0B0" opacity=".5"/>
+          <ellipse cx="32" cy="52" rx="5" ry="9" fill="#8FAF7E" opacity=".4" transform="rotate(-40 32 52)"/>
+          <ellipse cx="46" cy="34" rx="4" ry="7" fill="#8FAF7E" opacity=".35" transform="rotate(-65 46 34)"/>
+        </svg>
+
+        <svg class="floral-corner bl" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 110 Q10 10 110 10" stroke="#8FAF7E" stroke-width="1.5" fill="none"/>
+          <circle cx="28" cy="42" r="7" fill="#D4A44C" opacity=".65"/>
+          <circle cx="42" cy="26" r="9" fill="#E8A0B0" opacity=".7"/>
+          <circle cx="18" cy="62" r="5" fill="#D4A44C" opacity=".5"/>
+          <ellipse cx="32" cy="52" rx="5" ry="9" fill="#8FAF7E" opacity=".4" transform="rotate(-40 32 52)"/>
+          <ellipse cx="46" cy="34" rx="4" ry="7" fill="#8FAF7E" opacity=".35" transform="rotate(-65 46 34)"/>
+        </svg>
+
+        <svg class="floral-corner br" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 110 Q10 10 110 10" stroke="#8FAF7E" stroke-width="1.5" fill="none"/>
+          <circle cx="28" cy="42" r="8" fill="#E8A0B0" opacity=".7"/>
+          <circle cx="42" cy="26" r="6" fill="#D4A44C" opacity=".6"/>
+          <circle cx="18" cy="62" r="5" fill="#E8A0B0" opacity=".5"/>
+          <ellipse cx="32" cy="52" rx="5" ry="9" fill="#8FAF7E" opacity=".4" transform="rotate(-40 32 52)"/>
+        </svg>
+
+        <div class="letter-content">
+
+          <p class="letter-greeting">
+            Dear <span class="placeholder-text">Raya</span>,
+          </p>
+
+          <p class="letter-body">
+            <span class="placeholder-text">
+              I’m not very good at writing messages, but it felt important to write one for someone who does so much and brings so much joy to my daily life, even from an ocean away.
+            </span>
+          </p>
+
+          <p class="letter-body">
+            <span class="placeholder-text">
+              I’ve been incredibly proud of you this year. The effort you’ve put into school and everything you’ve achieved has been amazing to watch.
+              You deserve a day filled with happiness, laughter, and all the appreciation in the world. I hope this next year brings you exciting opportunities, new challenges to chase, and plenty of reasons to be proud of yourself.
+              And hopefully, we’ll get to share many more memories together along the way.
+            </span>
+          </p>
+
+          <p class="letter-body">
+            <span class="placeholder-text">
+              People say addictions can be bad, but this might genuinely be the healthiest addiction I’ll ever know.
+              You’ve become such a safe place in my life, someone I can always turn to and trust. I love everything about you, both inside and out, and I hope that never changes.
+              Keep chasing your goals, keep surrounding yourself with the people you love, and keep shining as brightly as you always do. Happy Birthday.
+            </span>
+          </p>
+
+          <div class="letter-sign-off">
+            <span class="placeholder-text">With all my appreciation,</span><br />
+            <span class="letter-signature placeholder-text">Felix 𖹭.</span>
+          </div>
+
+        </div><!-- /letter-content -->
+      </div><!-- /letter-card -->
+    </div><!-- /letter-wrap -->
+
+  </div><!-- /page -->
+
+  <footer>
+    <a style="text-decoration: none;" href="Home.html">
+    <p class="hint">Click here to go back</p>
+  </a>
+  </footer>
+
+  <!-- sparkles and petal -->
+  <script>
+    (() => {
+      const canvas = document.getElementById('petals');
+      const ctx    = canvas.getContext('2d');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const PINK  = 'rgba(243, 179, 190,';
+      const PETAL = 'rgba(199, 87, 111,';
+      const DEEP  = 'rgba(122, 0, 37,';
+      const WHITE = 'rgba(255, 248, 249,';
+
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      function createParticle() {
+        const type   = Math.random() > .55 ? 'petal' : 'sparkle';
+        const colors = [PINK, PETAL, DEEP, WHITE];
+        return {
+          type,
+          x:            rand(0, W),
+          y:            rand(-H * .2, H * .5),
+          r:            type === 'petal' ? rand(3, 7) : rand(.8, 2.5),
+          speed:        rand(.3, .9),
+          opacity:      rand(.25, .75),
+          drift:        rand(-.5, .5),
+          wobble:       rand(0, Math.PI * 2),
+          wobbleSpeed:  rand(.01, .035),
+          wobbleAmt:    rand(.4, 1.2),
+          color:        colors[Math.floor(Math.random() * colors.length)],
+          twinkle:      rand(0, Math.PI * 2),
+          twinkleSpeed: rand(.02, .05),
+          angle:        rand(0, Math.PI * 2),
+          angleSpeed:   rand(-.015, .015),
+        };
+      }
+
+      function drawPetal(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.scale(1, 1.7);
+        ctx.beginPath();
+        ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+        const alpha = p.opacity * (.55 + .45 * Math.sin(p.twinkle));
+        ctx.fillStyle = `${p.color}${alpha.toFixed(2)})`;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawSparkle(p) {
+        const alpha = p.opacity * (.5 + .5 * Math.sin(p.twinkle));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `${p.color}${alpha.toFixed(2)})`;
+        ctx.fill();
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 65 }, createParticle);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles) {
+          p.wobble     += p.wobbleSpeed;
+          p.angle      += p.angleSpeed;
+          p.twinkle    += p.twinkleSpeed;
+          p.y          += p.speed;
+          p.x          += p.drift + Math.sin(p.wobble) * p.wobbleAmt;
+          if (p.type === 'petal') drawPetal(p);
+          else                    drawSparkle(p);
+          if (p.y > H + 20 || p.x < -20 || p.x > W + 20) {
+            Object.assign(p, createParticle(), { y: rand(-60, -10) });
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      init();
+      draw();
+    })();
+  </script>
+
+  <!-- old seal -->
+  <script>
+    (() => {
+      const seal       = document.getElementById('seal');
+      const sealHint   = document.getElementById('sealHint');
+      const letterWrap = document.getElementById('letterWrap');
+      const petalRow   = document.getElementById('petalRow');
+      let opened       = false;
+
+      function openLetter() {
+        if (opened) return;
+        opened = true;
+
+        seal.classList.add('cracking');
+        sealHint.style.opacity = '0';
+
+        setTimeout(() => {
+          seal.style.display     = 'none';
+          sealHint.style.display = 'none';
+          letterWrap.setAttribute('aria-hidden', 'false');
+          letterWrap.classList.add('open');
+          setTimeout(() => petalRow.classList.add('visible'), 800);
+        }, 520);
+      }
+
+      seal.addEventListener('click', openLetter);
+      seal.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLetter(); }
+      });
+
+      // Reduced motion — skip straight to open
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        seal.style.display     = 'none';
+        sealHint.style.display = 'none';
+        letterWrap.setAttribute('aria-hidden', 'false');
+        letterWrap.classList.add('open');
+        petalRow.classList.add('visible');
+      }
+    })();
+  </script>
+
+</body>
+</html>

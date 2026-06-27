@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <!-- Sparkles -->
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+
+  <main class="content">
+
+    <h1 class="title">Choose a gift</h1>
+
+    <!-- gifts row -->
+    <div class="gift-row" role="list">
+
+      <div class="gift-item" role="listitem">
+        <a href="songs.html" class="gift-link" aria-label="Gift box" tabindex="0">
+          <img
+            src="Images/song.png"
+            alt="A wrapped gift box"
+            class="gift-img"
+          />
+        </a>
+        <span class="gift-label" aria-hidden="true">A surprise</span>
+      </div>
+
+      <div class="gift-item" role="listitem">
+        <a href="flowers.html" class="gift-link" aria-label="Flowers" tabindex="0">
+          <img
+            src="Images/flowers.png"
+            alt="A bouquet of flowers"
+            class="gift-img"
+          />
+        </a>
+        <span class="gift-label" aria-hidden="true">With love</span>
+      </div>
+
+      <div class="gift-item" role="listitem">
+        <a href="memories-gallery.html" class="gift-link" aria-label="Open the memories gallery">
+          <img
+            src="Images/Polaroid.png"
+            alt="A polaroid photo"
+            class="gift-img"
+          />
+        </a>
+        <span class="gift-label" aria-hidden="true">For you</span>
+      </div>
+
+    </div><!-- /gift-row -->
+
+  </main>
+
+  <!-- sparkles JS -->
+  <script>
+    (() => {
+      const canvas = document.getElementById('sparkles');
+      const ctx    = canvas.getContext('2d');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const PINK  = 'rgba(243, 179, 190,';
+      const WHITE = 'rgba(255, 248, 249,';
+
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      function createParticle() {
+        return {
+          x:            rand(0, W),
+          y:            rand(H * .2, H),
+          r:            rand(.8, 2.8),
+          speed:        rand(.25, .75),
+          opacity:      rand(.25, .8),
+          drift:        rand(-.4, .4),
+          color:        Math.random() > .6 ? WHITE : PINK,
+          twinkle:      rand(0, Math.PI * 2),
+          twinkleSpeed: rand(.02, .06),
+        };
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 55 }, createParticle);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles) {
+          p.twinkle += p.twinkleSpeed;
+          const alpha = p.opacity * (.6 + .4 * Math.sin(p.twinkle));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `${p.color}${alpha.toFixed(2)})`;
+          ctx.fill();
+          p.y -= p.speed;
+          p.x += p.drift;
+          if (p.y < -10 || p.x < -10 || p.x > W + 10) {
+            Object.assign(p, createParticle(), { y: H + 10 });
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      init();
+      draw();
+    })();
+  </script>
+
+</body>
+</html>
