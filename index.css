@@ -1,0 +1,191 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pink:       rgb(243, 179, 190);
+  --pink-soft:  rgba(243, 179, 190, 0.18);
+  --pink-glow:  rgba(243, 179, 190, 0.35);
+  --crimson:    #570013;
+  --rose:       #c7576f;
+  --deep:       #7a0025;
+  --white:      #fff8f9;
+  --white-dim:  rgba(255, 248, 249, 0.65);
+
+  --border-w:   2rem;
+  --border-clr: rgb(243, 179, 190);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  border: var(--border-w) solid var(--border-clr);
+  background: linear-gradient(-45deg, #570013, #c7576f, #7a0025);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  font-family: 'Sour Gummy', cursive;
+  color: var(--white);
+  overflow: hidden; /* single-screen feel */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  position: relative; /* for canvas sparkles */
+}
+
+/* gradient nic keyframes */
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatAnimation {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 40px 12px rgba(243, 179, 190, 0.25),
+      0 0 90px 30px rgba(199, 87, 111, 0.15);
+  }
+  50% {
+    box-shadow:
+      0 0 70px 22px rgba(243, 179, 190, 0.45),
+      0 0 140px 55px rgba(199, 87, 111, 0.25);
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* sparkles main */
+#sparkles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vh, 2rem);
+  padding: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
+  font-weight: 800;
+  color: var(--pink);
+  text-shadow:
+    0 .1em .3em rgba(0,0,0,.45),
+    0 0 2em rgba(243,179,190,.3);
+  letter-spacing: -.01em;
+  line-height: 1.1;
+  animation: fadeUp .8s ease both;
+}
+
+.envelope-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 1.5rem;
+  animation:
+    floatAnimation 5s ease-in-out infinite,
+    glowPulse 3s ease-in-out infinite,
+    fadeUp .9s ease .15s both;
+}
+
+/* link */
+.letter-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), filter .35s ease;
+  cursor: pointer;
+  opacity: 0.8; 
+}
+
+.letter-link:hover,
+.letter-link:focus-visible {
+  transform: scale(1.08) rotate(5deg);
+  filter: drop-shadow(0 0 1.5rem rgba(243,179,190,.7));
+  outline: none;
+  opacity: 1;
+}
+
+/* image enveloppe */
+.letter-image {
+  width: clamp(180px, 38vw, 420px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(.3rem .4rem .8rem rgba(0,0,0,.5));
+  transition: filter .35s ease;
+}
+
+/* hint */
+.hint {
+  font-size: clamp(.85rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+  color: var(--white-dim);
+  letter-spacing: .06em;
+  animation: fadeUp .9s ease .3s both;
+}
+
+.hint strong {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  background: var(--pink);
+  border-radius: 2px;
+  opacity: .55;
+  animation: fadeUp .8s ease .1s both;
+}
+
+/* fix nic adaption mobile etch... */
+@media (prefers-reduced-motion: reduce) {
+  body               { animation: none; }
+  .envelope-wrap     { animation: none; }
+  .title, .hint,
+  .divider           { animation: none; opacity: 1; }
+  .letter-link:hover { transform: scale(1.04); }
+}
+
+@media (max-width: 480px) {
+  :root { --border-w: 1rem; }
+
+  .title { letter-spacing: -.02em; }
+
+  .envelope-wrap { padding: .8rem; }
+}
+
+/* pour landscape mnobile JF */
+@media (max-height: 520px) {
+  body { overflow-y: auto; }
+  .content { gap: .6rem; padding: .5rem; }
+  .title { font-size: clamp(1.6rem, 5vw, 2.8rem); }
+  .letter-image { width: clamp(120px, 26vw, 220px); }
+}

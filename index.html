@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday 2026</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- sparkles -->
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+
+  <main class="content">
+
+    <h1 class="title">Happy Birthday <i>Raya</i>⁠ ❤︎</h1>
+
+    <div>
+      <a href="Home.html" class="letter-link" aria-label="Open the gift">
+        <img
+          src="Images/gift.png"
+          alt="A gift"
+          class="letter-image"
+        />
+      </a>
+    </div>
+
+    <p class="hint">Click the gift to <strong>open it</strong></p>
+
+  </main>
+
+  <!-- Sparkles JS -->
+  <script>
+    (() => {
+      const canvas = document.getElementById('sparkles');
+      const ctx    = canvas.getContext('2d');
+
+      // Respect reduced-motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const PINK  = 'rgba(243, 179, 190,';
+      const WHITE = 'rgba(255, 248, 249,';
+
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      function randomBetween(a, b) {
+        return a + Math.random() * (b - a);
+      }
+
+      function createParticle() {
+        const isWhite = Math.random() > .6;
+        return {
+          x:       randomBetween(0, W),
+          y:       randomBetween(H * .2, H),
+          r:       randomBetween(.8, 2.8),
+          speed:   randomBetween(.25, .75),
+          opacity: randomBetween(.25, .8),
+          drift:   randomBetween(-.4, .4),
+          color:   isWhite ? WHITE : PINK,
+          twinkle: randomBetween(0, Math.PI * 2),
+          twinkleSpeed: randomBetween(.02, .06),
+        };
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 55 }, createParticle);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        for (const p of particles) {
+          // twinkle
+          p.twinkle += p.twinkleSpeed;
+          const alpha = p.opacity * (.6 + .4 * Math.sin(p.twinkle));
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `${p.color}${alpha.toFixed(2)})`;
+          ctx.fill();
+
+          // drift upward
+          p.y    -= p.speed;
+          p.x    += p.drift;
+
+          // reset when off screen
+          if (p.y < -10 || p.x < -10 || p.x > W + 10) {
+            Object.assign(p, createParticle(), { y: H + 10 });
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      init();
+      draw();
+    })();
+  </script>
+
+</body>
+</html>
